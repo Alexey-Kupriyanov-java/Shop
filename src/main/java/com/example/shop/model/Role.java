@@ -8,10 +8,11 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 @Getter
 @Setter
-@NoArgsConstructor
+@ToString
+@RequiredArgsConstructor
 public class Role {
 
     @Id
@@ -22,6 +23,8 @@ public class Role {
     @Column(name = "role_name", nullable = false, unique = true)
     private String name;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, mappedBy = "roles")
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @ToString.Exclude
     private Set<User> users;
 }

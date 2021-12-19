@@ -3,10 +3,9 @@ package com.example.shop.model;
 import lombok.*;
 
 import javax.persistence.*;
-//import javax.validation.constraints.Min;
 
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,11 +23,9 @@ public class Product {
     private String description;
 
     @Column(name = "quantity", nullable = false)
-    //@Min(value = 0, message = "*Quantity has to be non-negative number")
     private Integer quantity;
 
     @Column(name = "price", nullable = false)
-    //@Min(value = 0, message = "*Price has to be non-negative number")
     private Integer price;
 
     @Override
