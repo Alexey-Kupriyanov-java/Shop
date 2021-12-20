@@ -1,15 +1,15 @@
-package com.example.shop.model;
+package com.example.shop.entity;
 
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "products")
+@Table(name = "goods")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Product {
+public class Goods {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,14 +26,14 @@ public class Product {
     private Integer quantity;
 
     @Column(name = "price", nullable = false)
-    private Integer price;
+    private Double price;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Product product = (Product) o;
+        Goods product = (Goods) o;
 
         return id.equals(product.id);
     }

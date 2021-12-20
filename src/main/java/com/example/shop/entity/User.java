@@ -1,4 +1,4 @@
-package com.example.shop.model;
+package com.example.shop.entity;
 
 import lombok.*;
 
@@ -26,6 +26,7 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    //TODO
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;

@@ -1,5 +1,6 @@
-package com.example.shop.model;
+package com.example.shop.entity;
 
+import com.example.shop.dto.PositionDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,13 +29,10 @@ public class Order {
     //@NotEmpty(message = "*Please provide your phone")
     private String phone;
 
-    @Column(name = "cart_id")
-    private Long cart_id;
-
     @Column(name = "shipping_address")
     private String shipping_address;
 
     @ElementCollection
     @CollectionTable(name = "order_positions", joinColumns = @JoinColumn(name = "order_id"))
-    private List<OrderPosition> orderPositions;
+    private List<PositionDto> positions;
 }

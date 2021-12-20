@@ -1,10 +1,8 @@
-package com.example.shop.model;
+package com.example.shop.entity;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -23,6 +21,7 @@ public class Role {
     @Column(name = "role_name", nullable = false, unique = true)
     private String name;
 
+    //TODO
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
     @ToString.Exclude
