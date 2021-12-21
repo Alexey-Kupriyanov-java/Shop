@@ -39,10 +39,8 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public GoodsDto update(long id, GoodsDto goodsDto) {
-        //TODO
+    public GoodsDto update(GoodsDto goodsDto) {
         Goods goods = conversionService.convert(goodsDto, Goods.class);
-        goods.setId(id);
         Goods result = goodsRepository.save(goods);
         return conversionService.convert(result, GoodsDto.class);
     }

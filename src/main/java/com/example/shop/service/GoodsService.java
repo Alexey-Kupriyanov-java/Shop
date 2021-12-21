@@ -11,7 +11,7 @@ public interface GoodsService {
 
     GoodsDto create(GoodsDto goodsDto);
 
-    GoodsDto update(long id, GoodsDto goodsDto);
+    GoodsDto update(GoodsDto goodsDto);
 
     void delete(long id);
 }

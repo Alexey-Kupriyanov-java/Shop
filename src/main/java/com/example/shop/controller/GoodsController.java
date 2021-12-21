@@ -23,14 +23,14 @@ public class GoodsController {
         return goodsService.findAll();
     }
 
-    @PostMapping("/new")
+    @PostMapping
     public GoodsDto create(@RequestBody GoodsDto goodsDto) {
         return goodsService.create(goodsDto);
     }
 
-    @PutMapping("/{id}")
-    public GoodsDto update(@PathVariable("id") long id, @RequestBody GoodsDto goodsDto) {
-        return goodsService.update(id, goodsDto);
+    @PutMapping
+    public GoodsDto update(@RequestBody GoodsDto goodsDto) {
+        return goodsService.update(goodsDto);
     }
 
     @DeleteMapping("/{id}")

@@ -13,7 +13,7 @@ import java.util.List;
 public class OrderController {
     private final OrderService orderService;
 
-    @PostMapping("/create")
+    @PostMapping
     public OrderDto create(@RequestBody OrderDto orderDto) {
         return orderService.create(orderDto);
     }
@@ -23,8 +23,8 @@ public class OrderController {
         return orderService.findAll();
     }
 
-    @GetMapping("/find")
-    public OrderDto findByEmail(@RequestParam String email) {
+    @GetMapping("/email/{email}")
+    public OrderDto findByEmail(@PathVariable String email) {
         return orderService.findByEmail(email);
     }
 
