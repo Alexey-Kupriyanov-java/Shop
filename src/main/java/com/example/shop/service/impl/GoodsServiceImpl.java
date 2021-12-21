@@ -1,39 +1,54 @@
 package com.example.shop.service.impl;
 
 import com.example.shop.dto.GoodsDto;
+import com.example.shop.entity.Goods;
+import com.example.shop.repository.GoodsRepository;
 import com.example.shop.service.GoodsService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class GoodsServiceImpl implements GoodsService {
+
+    private final GoodsRepository goodsRepository;
+    private final ConversionService conversionService;
+
     @Override
     public GoodsDto findById(long id) {
-        //TODO
-        return GoodsDto.builder().id(id).build();
+        Goods result = goodsRepository.findById(id).orElseThrow();
+        return conversionService.convert(result, GoodsDto.class);
     }
 
     @Override
     public List<GoodsDto> findAll() {
-        //TODO
-        return List.of(GoodsDto.builder().id(1).build(), GoodsDto.builder().id(2).build());
+        return goodsRepository.findAll().stream()
+                .map(goods -> conversionService.convert(goods, GoodsDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override
     public GoodsDto create(GoodsDto goodsDto) {
-        //TODO
-        return goodsDto;
+        Goods goods = conversionService.convert(goodsDto, Goods.class);
+        Goods result = goodsRepository.save(goods);
+        return conversionService.convert(result, GoodsDto.class);
     }
 
     @Override
     public GoodsDto update(long id, GoodsDto goodsDto) {
         //TODO
-        return goodsDto;
+        Goods goods = conversionService.convert(goodsDto, Goods.class);
+        goods.setId(id);
+        Goods result = goodsRepository.save(goods);
+        return conversionService.convert(result, GoodsDto.class);
     }
 
     @Override
     public void delete(long id) {
-        //TODO
+        goodsRepository.deleteById(id);
     }
 }

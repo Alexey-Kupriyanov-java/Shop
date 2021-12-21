@@ -3,6 +3,7 @@ package com.example.shop.dto;
 import lombok.*;
 import java.util.List;
 
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -12,6 +13,7 @@ public class OrderDto {
     private String email;
     private String phone;
     private String shippingAddress;
+    private double total;
     private List<PositionDto> positions;
 
     @Override

@@ -1,14 +1,19 @@
 package com.example.shop.entity;
 
 import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "goods")
+@ToString
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Goods {
 
     @Id
@@ -31,15 +36,13 @@ public class Goods {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Goods product = (Goods) o;
-
-        return id.equals(product.id);
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Goods goods = (Goods) o;
+        return id != null && Objects.equals(id, goods.id);
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return getClass().hashCode();
     }
 }
