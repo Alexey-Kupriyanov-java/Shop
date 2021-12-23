@@ -5,13 +5,13 @@ import com.example.shop.dto.GoodsDto;
 import java.util.List;
 
 public interface GoodsService {
-    GoodsDto findById(long id);
+    GoodsDto findById(Long id);
 
     List<GoodsDto> findAll();
 
-    GoodsDto create(GoodsDto goodsDto);
+    GoodsDto save(GoodsDto goodsDto);
 
     GoodsDto update(GoodsDto goodsDto);
 
-    void delete(long id);
+    void delete(Long id);
 }
